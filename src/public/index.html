@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+  <title>Sistemas Escolar</title>
+</head>
+
+<body>
+  <main>
+
+
+    <div class="container pagina">
+      <div class="row justify-content-center align-items-center">
+
+        <div class="col-md-10" v-if="ventanas[0]">
+
+          <div class="row justify-content-center pagina">
+            <div class="col-md-12  cabezote">
+              {{titulo}}
+            </div>
+          </div>
+
+          <div class="row">
+
+
+
+
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12 titulos">
+                  <small>Datos personales</small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mt-3 pd-4 mb-3">
+                  <label for="nombre">Identificacion</label>
+                  <input type="number" class="form-control" id="identificacion" v-model="estudiante.identificacion"
+                    required>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-md-6 mt-3 pd-4 mb-3">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" v-model="estudiante.nombre" required>
+                </div>
+                <div class="col-md-6 mt-3 mb-3">
+                  <label for="apellido">Apellido</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.apellido" required>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-md-4  mb-3">
+                  <label for="fecha">Fecha nacimiento</label>
+                  <input type="date" class="form-control" id="fecha" v-model="estudiante.fecha_nacimiento" required>
+                </div>
+                <div class="col-md-2 mb-3">
+                  <label for="edad">Edad</label>
+                  <input type="number" class="form-control" id="edad" v-model="estudiante.edad" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="direccion">Direccion casa</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.direccion" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 titulos">
+                  <small>Datos escolares</small>
+                </div>
+              </div>
+              <div class="row ">
+
+                <div class="col-md-4 mt-3 mb-3">
+                  <label for="nombre">Ultimo grado</label>
+                  <select v-model="estudiante.data_escolar.ultimo_grado">
+                    <option v-for="grado in grados" :value="grado"> {{grado}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mt-3 mb-3">
+                  <label for="materia">Materia preferida</label>
+                  <select v-model="estudiante.data_escolar.materia_preferida">
+                    <option v-for="materia in materias" :value="materia"> {{materia}}</option>
+                  </select>
+                </div>
+                <div class="col-md-3  mb-3">
+                  <label for="promedio">Ultimo promedio</label>
+                  <input type="number" class="form-control" id="promedio" required
+                    v-model.number="estudiante.data_escolar.ultimo_promedio">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 titulos">
+                  <small>Datos acudiente</small>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-md-6 mt-3 mb-3">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" required
+                    v-model="estudiante.data_acudiente.nombre">
+                </div>
+                <div class="col-md-6 mt-3 mb-3">
+                  <label for="apellido">Apellido</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.data_acudiente.apellido"
+                    required>
+                </div>
+
+              </div>
+              <div class="row">
+
+                <div class="col-md-6 mt-3 mb-3">
+                  <label for="materia">Parentesco</label>
+                  <select v-model="estudiante.data_acudiente.parentesco">
+                    <option v-for="familiar in parentesco" :value="familiar"> {{familiar}}</option>
+                  </select></div>
+                <div class="col-md-3 mt-3 mb-3">
+                  <label for="apellido">Celular 1</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.data_acudiente.celular1"
+                    required>
+                </div>
+                <div class="col-md-3 mt-3 mb-3">
+                  <label for="apellido">Celular 2</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.data_acudiente.celular2"
+                    required>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-md-4 medico">
+              <div class="row">
+                <div class="col-md-12 titulos2">
+                  <small>Datos Medicos</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 mt-3 ">
+                  <label for="materia">Tipo Sangre</label>
+                  <select v-model="estudiante.data_medicos.tipo_sangre">
+                    <option v-for="sangre in tipo_sangre" :value="sangre"> {{sangre}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12  mb-3">
+                  <label for="apellido">Alergico A</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.data_medicos.alergico_a"
+                    required>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12  mb-3">
+                  <label for="apellido">Alergico A</label>
+                  <input type="text" class="form-control" id="apellido" v-model="estudiante.data_medicos.alergico_b"
+                    required>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12  mb-3">
+                  <label for="apellido">Padece alguna enfermedad</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Si"
+                      v-model="estudiante.data_medicos.padece_enfermedad" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      Si
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                      v-model="estudiante.data_medicos.padece_enfermedad" value="No">
+                    <label class="form-check-label" for="exampleRadios2">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12  mb-3">
+                  <label for="apellido">Cual?</label>
+                  <input type="text" class="form-control" id="cual" v-model="estudiante.data_medicos.nombre_enfermedad"
+                    required>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+             <div class="col-md-12  mt-3 ">
+              <div class="row justify-content-between bg-dark">
+                <button v-if="edicion" @click="anterior()" class="  btn-warning">Anterior</button>
+                <button style="width: 450px" @click="procesar()" class=" btn-primary">{{msg_boton}}</button>
+                <button v-if="edicion" @click="siguiente()" class=" btn-warning">Siguiente</button>
+              </div>
+            </div>
+            <div>
+              <div class="boton">
+                <button @click="activar(0)" class="btn-primary btn-lg m-3">Cargar Datos</button>
+                <button @click="activar(1)" class="btn-primary btn-lg m-3">Listado editar</button>
+                <button @click="activar(2)" class="btn-primary btn-lg m-3">estudiante matricula </button>
+                 
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-md-10" v-if="ventanas[2]">
+          <div class="row justify-content-center pagina">
+          {{titulo}}
+          </div>
+          <div class="row p-2">
+            Grado a matricular :
+            <select v-model="grado_escolar" @change="alumnos_matricular()">
+              <option v-for="grado,index in grados">
+                {{grado}}
+              </option>
+            </select>
+          </div>
+          <div class="row justify-content-center pagina">
+            <table class="blueTable">
+              <thead class="tabla">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Ultimo Grado</th>
+                <th>Promedio</th>
+                <th>Acciones</th>
+              </thead>
+              <tbody>
+                <tr v-for="alumno,index in grado_procesar">
+                  <td>{{alumno.nombre}}</td>
+                  <td>{{alumno.apellido}}</td>
+                  <td>{{alumno.data_escolar.ultimo_grado}}</td>
+                  <td>{{alumno.data_escolar.ultimo_promedio}}</td>
+                  
+                  <td>
+                    <span class="material-icons" id="two"  @click="borrar_inscripcion(alumno._id)" >
+                      delete_sweep
+                    </span>
+
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+            <button @click="location.reload()" class="btn-primary btn-lg m-3">Cargar Datos</button>
+            
+          </div>
+
+        </div>
+
+       
+
+
+
+
+
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <script src="codigo.js"></script>
+  
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+   
+</body>
+
+</html>
