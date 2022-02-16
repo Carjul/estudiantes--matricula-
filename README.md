@@ -5,3 +5,11 @@
 
 #correr el server en preducción 
 #npm start
+
+#"Colaboradores":
+CARLOS RAMOS GONZÁLEZ
+GUSTAVO VEGA
+JHAN CARLOS RACINE 
+ANDRÉS SAAVEDRA 
+
+
