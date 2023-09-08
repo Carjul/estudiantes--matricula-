@@ -1,9 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
+const dotenv = require('dotenv');
 const app = express();
 
 
 // settings
+dotenv.config();
 app.set('port', process.env.PORT || 4000);
 
 // middlewares
